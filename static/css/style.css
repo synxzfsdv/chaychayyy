@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f6f9;
+}
+
+.navbar {
+    background-color: #2563eb;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.calendar-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.day-header {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    background: #e2e8f0;
+    border-radius: 4px;
+}
+
+.day-cell {
+    min-height: 90px;
+    border: 1px solid #cbd5e1;
+    padding: 6px;
+    background: #fff;
+    border-radius: 4px;
+}
+
+.day-num {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #475569;
+}
