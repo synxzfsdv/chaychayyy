@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2>Dashboard Overview</h2>
+        <p>Welcome back! Here is what's happening for {{ month }} {{ year }}.</p>
+    </div>
+
+    <!-- Quick Stats Grid -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3>{{ stats.total_tasks }}</h3>
+            <p>Total Tasks</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ stats.pending_tasks }}</h3>
+            <p>Pending</p>
+        </div>
+        <div class="stat-card">
+            <h3>{{ stats.completed_tasks }}</h3>
+            <p>Completed</p>
+        </div>
+    </div>
+
+    <!-- Quick Action Cards -->
+    <div class="actions-grid">
+        <div class="action-card">
+            <h3>📅 Calendar View</h3>
+            <p>Manage your schedule day-by-day and view deadlines.</p>
+            <a href="{{ url_for('calendar_view') }}" class="action-btn">Open Calendar</a>
+        </div>
+        <div class="action-card">
+            <h3>➕ Add New Task</h3>
+            <p>Create a task and assign it a priority or date.</p>
+            <a href="#" class="action-btn">Create Task</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
