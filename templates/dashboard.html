@@ -7,7 +7,6 @@
         <p>Welcome back! Here is what's happening for {{ month }} {{ year }}.</p>
     </div>
 
-    <!-- Quick Stats Grid -->
     <div class="stats-grid">
         <div class="stat-card">
             <h3>{{ stats.total_tasks }}</h3>
@@ -23,7 +22,6 @@
         </div>
     </div>
 
-    <!-- Quick Action Cards -->
     <div class="actions-grid">
         <div class="action-card">
             <h3>📅 Calendar View</h3>
@@ -33,7 +31,7 @@
         <div class="action-card">
             <h3>➕ Add New Task</h3>
             <p>Create a task and assign it a priority or date.</p>
-            <a href="#" class="action-btn">Create Task</a>
+            <a href="{{ url_for('calendar_view') }}" class="action-btn">Go to Tasks</a>
         </div>
     </div>
 </div>

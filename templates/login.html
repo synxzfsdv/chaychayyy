@@ -6,7 +6,6 @@
         <h2>Welcome Back</h2>
         <p>Log in to your calendar to-do list</p>
         
-        <!-- Added method="POST" here -->
         <form method="POST">
             <div class="form-group">
                 <label for="email">Email Address</label>
@@ -22,7 +21,7 @@
         </form>
         
         <div class="auth-footer">
-            <p>Don't have an account? <a href="#">Sign up</a></p>
+            <p>Don't have an account? <a href="{{ url_for('register') }}">Sign up</a></p>
         </div>
     </div>
 </div>

@@ -3,16 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar To-Do</title>
+    <title>{% block title %}Thalassa | Calendar To-Do{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>python app.py
+</head>
 <body>
-    <nav class="navbar">
-        <h1>📅 Calendar To-Do App</h1>
-    </nav>
+    {% if session.get('logged_in') %}
+    <div class="app-layout">
+        <!-- Vertical Left Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="{{ url_for('dashboard') }}" class="brand-title">Thalassa</a>
+                <p class="brand-subtitle">Jane Erica Lusantas Ganda Sexy Sobra, Clarizze Nicole Renales.</p>
+            </div>
 
-    <main>
-        {% block content %}{% endblock %}
+            <nav class="sidebar-nav">
+                <a href="{{ url_for('dashboard') }}" 
+                   class="sidebar-link {% if request.endpoint == 'dashboard' %}active{% endif %}">
+                    <span class="nav-icon">🏠</span> Home Dashboard
+                </a>
+
+                <a href="{{ url_for('calendar_view') }}" 
+                   class="sidebar-link {% if request.endpoint == 'calendar_view' %}active{% endif %}">
+                    <span class="nav-icon">📅</span> Calendar View
+                </a>
+
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="sidebar-link logout-link">
+                    <span class="nav-icon">🚪</span> Log Out
+                </a>
+            </div>
+        </aside>
+
+        <!-- Right Main Content Area -->
+        <main class="main-workspace">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    {% else %}
+    <!-- Clean Layout for Login / Register Pages -->
+    <main class="auth-wrapper">
+        {% block auth_content %}
+            {{ self.content() }}
+        {% endblock %}
     </main>
+    {% endif %}
 </body>
 </html>

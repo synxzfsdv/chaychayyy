@@ -1,14 +1,24 @@
 from datetime import datetime
-from flask import Flask, redirect, render_template, request, url_for
+from flask import (
+    Flask,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 
 app = Flask(__name__)
+app.secret_key = "super_secret_calendar_key"
 
 
-# Main page is now the Dashboard
 @app.route("/")
 def dashboard():
+    # Send unauthenticated users to login first
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+
     now = datetime.now()
-    # You can pass dummy stats here for now
     stats = {
         "total_tasks": 12,
         "completed_tasks": 5,
@@ -22,9 +32,11 @@ def dashboard():
     )
 
 
-# Your calendar route
 @app.route("/calendar")
 def calendar_view():
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+
     now = datetime.now()
     return render_template("index.html", year=now.year, month=now.strftime("%B"))
 
@@ -32,10 +44,23 @@ def calendar_view():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        # Redirect to dashboard upon successful login
+        session["logged_in"] = True
         return redirect(url_for("dashboard"))
-
     return render_template("login.html")
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        session["logged_in"] = True
+        return redirect(url_for("dashboard"))
+    return render_template("register.html")
+
+
+@app.route("/logout")
+def logout():
+    session.pop("logged_in", None)
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
