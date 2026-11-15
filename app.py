@@ -7,8 +7,13 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     now = datetime.now()
-    # Basic variables to pass to the HTML template
     return render_template("index.html", year=now.year, month=now.strftime("%B"))
+
+
+# Added login route
+@app.route("/login")
+def login():
+    return render_template("login.html")
 
 
 if __name__ == "__main__":
